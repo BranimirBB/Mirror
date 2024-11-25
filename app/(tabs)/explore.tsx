@@ -7,6 +7,12 @@ export default function TabTwoScreen() {
   const [fitnessImage, setFitnessImage] = useState(require('@/assets/images/fitness.png'));
   const [medicineImage, setMedicineImage] = useState(require('@/assets/images/medicine.png'));
   const [morningImage, setMorningImage] = useState(require('@/assets/images/morning.png'));
+  const [timeWeatherImage, setTimeWeatherImage] = useState(require('@/assets/images/time_weather.png')); 
+  const [trafficImage, setTrafficImage] = useState(require('@/assets/images/traffic.png'));
+  const [musicImage, setMusicImage] = useState(require('@/assets/images/music.png'));
+  const [colorImage, setColorImage] = useState(require('@/assets/images/color.png'));
+  const [calendarImage, setCalendarImage] = useState(require('@/assets/images/calendar.png'));
+  const [learnImage, setLearnImage] = useState(require('@/assets/images/learn.png'));
   const [imgVoice, setImgVoice] = useState(require('@/assets/images/img_of_voice.png'));  // State for voice image
   const images = [
     require('@/assets/images/img_of_voice.png'),
@@ -41,6 +47,48 @@ export default function TabTwoScreen() {
     setMorningImage(morningImage === require('@/assets/images/morning.png') 
       ? require('@/assets/images/selected_morning.png') 
       : require('@/assets/images/morning.png')
+    );
+  };
+  // Toggle function for time_weather image
+  const toggleTimeWeatherImage = () => {
+    setTimeWeatherImage(timeWeatherImage === require('@/assets/images/time_weather.png') 
+      ? require('@/assets/images/selected_time_weather.png') 
+      : require('@/assets/images/time_weather.png')
+    );
+  };
+
+  const toggleTrafficImage = () => {
+    setTrafficImage(trafficImage === require('@/assets/images/traffic.png') 
+      ? require('@/assets/images/selected_traffic.png') 
+      : require('@/assets/images/traffic.png')
+    );
+  };
+
+  const toggleMusicImage = () => {
+    setMusicImage(musicImage === require('@/assets/images/music.png') 
+      ? require('@/assets/images/selected_music.png') 
+      : require('@/assets/images/music.png')
+    );
+  };
+
+  const toggleColorImage = () => {
+    setColorImage(colorImage === require('@/assets/images/color.png') 
+      ? require('@/assets/images/selected_color.png') 
+      : require('@/assets/images/color.png')
+    );
+  };
+
+  const toggleCalendarImage = () => {
+    setCalendarImage(calendarImage === require('@/assets/images/calendar.png') 
+      ? require('@/assets/images/selected_calendar.png') 
+      : require('@/assets/images/calendar.png')
+    );
+  };
+
+  const toggleLearnImage = () => {
+    setLearnImage(learnImage === require('@/assets/images/learn.png') 
+      ? require('@/assets/images/selected_learn.png') 
+      : require('@/assets/images/learn.png')
     );
   };
 
@@ -154,6 +202,43 @@ export default function TabTwoScreen() {
               style={styles.image4}
             />
           </TouchableOpacity>
+          {/* Image 5: time_weather.png, clickable to toggle */}
+          <TouchableOpacity onPress={toggleTimeWeatherImage}>
+            <Image
+              source={timeWeatherImage}  // This will toggle between time_weather.png and selected_time_weather.png
+              style={styles.image5}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={toggleTrafficImage}>
+  <Image
+    source={trafficImage}  // This will toggle between traffic.png and selected_traffic.png
+    style={styles.image6}
+  />
+</TouchableOpacity>
+<TouchableOpacity onPress={toggleMusicImage}>
+  <Image
+    source={musicImage}  // This will toggle between music.png and selected_music.png
+    style={styles.image7}
+  />
+</TouchableOpacity>
+<TouchableOpacity onPress={toggleColorImage}>
+  <Image
+    source={colorImage}  // This will toggle between color.png and selected_color.png
+    style={styles.image8}
+  />
+</TouchableOpacity>
+<TouchableOpacity onPress={toggleCalendarImage}>
+  <Image
+    source={calendarImage}  // This will toggle between calendar.png and selected_calendar.png
+    style={styles.image9}
+  />
+</TouchableOpacity>
+<TouchableOpacity onPress={toggleLearnImage}>
+  <Image
+    source={learnImage}  // This will toggle between learn.png and selected_learn.png
+    style={styles.image10}
+  />
+</TouchableOpacity>
         </ScrollView>
       </ImageBackground>
     </View>
@@ -204,7 +289,25 @@ const styles = StyleSheet.create({
     marginBottom: 18,  // Adds space between the third and fourth images
   },
   image4: {
-    // Optionally add styling if needed
+    marginBottom: 18,  // Adds space between the third and fourth images
+  },
+  image5: {
+    marginBottom: 18,  // Adds space between the third and fourth images
+  },
+  image6: {
+    marginBottom: 18,  // Adds space between the third and fourth images
+  },
+  image7: {
+    marginBottom: 18,  // Adds space between the third and fourth images
+  },
+  image8: {
+    marginBottom: 18,  // Adds space between the third and fourth images
+  },
+  image9: {
+    marginBottom: 18,  // Adds space between the third and fourth images
+  },
+  image10: {
+    marginBottom: 18,  // Adds space between the third and fourth images
   },
   buttonGroup: {
     alignItems: 'flex-start',  // Align buttons to the left within the group
