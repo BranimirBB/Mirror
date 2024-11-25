@@ -14,19 +14,20 @@ export default function Camera() {
   const sound = useRef(new Audio.Sound());
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // State variables for weather, temperature, and time
-  const [weather, setWeather] = useState("Sunny");
-  const [temperature, setTemperature] = useState("25°C");
+  // State variables for date and time
+  const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
     const updateDateTime = () => {
       const date = new Date();
-      const options = { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' };
-      setCurrentTime(date.toLocaleTimeString('de-DE', options)); // Format time for Berlin
+      const dateOptions = { month: 'short', day: 'numeric', timeZone: 'Europe/Berlin' };
+      const timeOptions = { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin', hour12: false };
+      setCurrentDate(date.toLocaleDateString('en-US', dateOptions));
+      setCurrentTime(date.toLocaleTimeString('en-US').slice(0, 5));
     };
 
-    updateDateTime(); // Initial call to set the time immediately
+    updateDateTime(); // Initial call to set the date and time immediately
     const interval = setInterval(updateDateTime, 60000); // Update every minute
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
@@ -144,9 +145,8 @@ export default function Camera() {
 
         {/* Weather, Temperature, and Time Display */}
         <View style={styles.weatherContainer}>
-          <Text style={styles.weatherText}>{weather}</Text>
-          <Text style={styles.weatherText}>{temperature}</Text>
-          <Text style={styles.weatherText}>{currentTime}</Text>
+          <Text style={styles.weatherText}>{currentDate}</Text>
+          <Text style={styles.weatherText2}>{currentTime}</Text>
         </View>
 
         {/* Button container positioned at bottom-right */}
@@ -184,12 +184,17 @@ const styles = StyleSheet.create({
   },
   weatherContainer: {
     position: 'absolute',  // Position it absolutely
-    top: 500,  // Adjust the top position as needed
+    top: 700,  // Adjust the top position as needed
     left: '5%',  // Center it horizontally
     zIndex: 2,  // Ensure it's above other elements
     alignItems: 'flex-start',  // Align text to the left
   },
   weatherText: {
+    fontSize: 18,  // Adjust font size as needed
+    color: '#42FFC9',  // Change color to fit your design
+    marginBottom: 2,  // Space between lines
+  },
+  weatherText2: {
     fontSize: 18,  // Adjust font size as needed
     color: 'white',  // Change color to fit your design
     marginBottom: 5,  // Space between lines
@@ -221,8 +226,8 @@ const styles = StyleSheet.create({
     height: 50,  // Set a fixed height for the images
   },
   bottomImage: {
-    left: '5%',  // Horizontally center the image
-    marginTop: 590,
+    left: '25%',  // Horizontally center the image
+    marginTop: 601,
     zIndex: 1,  // Ensure it's above the camera view
   },
 });

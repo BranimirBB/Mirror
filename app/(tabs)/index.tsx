@@ -1,11 +1,22 @@
-import { StyleSheet, View, TextInput, Image, ImageBackground } from 'react-native';
+import { StyleSheet, View, TextInput, Image, ImageBackground, TouchableOpacity, Text } from 'react-native';
+import { AntDesign } from '@expo/vector-icons'; // Import AntDesign for the left arrow icon
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
 export default function HomeScreen() {
+  const navigation = useNavigation(); // Get the navigation object
+
   return (
     <ImageBackground
       source={require('@/assets/images/page1bg.png')}  // Path to your background image
       style={styles.backgroundImage}
     >
+      <TouchableOpacity 
+        style={styles.goBackButton} 
+        onPress={() => navigation.navigate('startpage')} // Navigate to StartPage
+      >
+        <AntDesign name="arrowleft" size={24} color="#0E1230" /> {/* Left arrow icon with updated color */}
+      </TouchableOpacity>
+
       <View style={styles.container}>
         {/* Grouping Image 1 (email.png) and Text Input 1 */}
         <View style={styles.inputGroup}>
@@ -15,7 +26,7 @@ export default function HomeScreen() {
           />
           <TextInput
             style={styles.textInput}
-            placeholder="Enter your email"
+            placeholder="husband_email@gmail.com"
           />
         </View>
         
@@ -27,7 +38,7 @@ export default function HomeScreen() {
           />
           <TextInput
             style={styles.textInput}
-            placeholder="Enter your name"
+            placeholder="Mr. Husband"
           />
         </View>
 
@@ -39,7 +50,7 @@ export default function HomeScreen() {
           />
           <TextInput
             style={styles.textInput}
-            placeholder="Enter your preferred language"
+            placeholder="English"
           />
         </View>
       </View>
@@ -54,6 +65,17 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',  // Align content to the left side of the screen
     paddingTop: 220,  // Adds 200px margin from the top
     paddingLeft: 40,  // Adds 40px margin from the left
+  },
+  goBackButton: {
+    position: 'absolute',  // Position it absolutely
+    top: 60,  // Adjust the top position as needed
+    left: 20,  // Adjust the left position as needed
+    width: 35,  // Set the width of the button
+    height: 35,  // Set the height of the button
+    borderRadius: 20,  // Make it circular
+    backgroundColor: '#42FFC9',  // Set the background color
+    justifyContent: 'center',  // Center the icon vertically
+    alignItems: 'center',  // Center the icon horizontally
   },
   container: {
     flex: 1,  // Fill the screen

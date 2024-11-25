@@ -14,21 +14,26 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,  // Dynamically setting the active tab icon color based on color scheme
         headerShown: false,  // Hiding the header for all screens in this layout
       }}>
-      {/* First Tab Screen: Home */}
+      {/* Set Start Page as the initial screen */}
+      <Tabs.Screen
+        name="startpage"  // Unique identifier for the "Start Page" tab
+        options={{
+          title: 'Start Page',  // Title displayed on the tab
+        }}
+      />
+      {/* Other Tab Screens */}
       <Tabs.Screen
         name="index"  // Unique identifier for the "Home" tab
         options={{
           title: 'Page 1',  // Title displayed on the tab
         }}
       />
-      {/* Second Tab Screen: Explore */}
       <Tabs.Screen
         name="explore"  // Unique identifier for the "Explore" tab
         options={{
           title: 'Page 2',  // Title displayed on the tab
         }}
       />
-      {/* Third Tab Screen: Camera */}
       <Tabs.Screen
         name="camera"  // Unique identifier for the "Camera" tab
         options={{
