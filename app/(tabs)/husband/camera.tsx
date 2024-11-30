@@ -163,10 +163,8 @@ export default function Camera() {
         {/* Button container positioned at bottom-right */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-            <AntDesign name="retweet" size={44} color="black" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleTakePhoto}>
-            <AntDesign name="camera" size={44} color="black" />
           </TouchableOpacity>
         </View>
 
@@ -212,8 +210,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',  // Absolute positioning
-    bottom: 20,  // 20px from the bottom
-    right: 20,  // 20px from the right
+    bottom: 10,  // 20px from the bottom
+    right: 10,  // 20px from the right
     flexDirection: 'column',  // Stack the buttons vertically
     alignItems: 'center',  // Center the buttons horizontally
     zIndex: 1,  // Ensure the buttons are above other elements
@@ -223,7 +221,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#42FFC9',
     borderRadius: 10,
     padding: 10,
-    width: 50,  // Set a smaller width for the button
+    width: 45,  // Set a smaller width for the button
     height: 30,  // Set a smaller height for the button
   },
   text: {

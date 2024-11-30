@@ -32,8 +32,7 @@ export default function Camera() {
         timeZone: 'Europe/Berlin', 
         hour12: false 
       };
-  
-      // Now the TypeScript will not complain
+
       setCurrentDate(date.toLocaleDateString('en-US', dateOptions));
       setCurrentTime(date.toLocaleTimeString('en-US', timeOptions).slice(0, 5));
     };
@@ -77,11 +76,15 @@ export default function Camera() {
   const handleRetakePhoto = () => setPhoto(null);
 
   const handleImagePress = () => {
-    Speech.speak("Today you will train legs!");
+    Speech.speak("Today you will train legs!", {
+      voice: 'com.apple.speech.synthesis.voice.Samantha' // Female voice (for English)
+    });
   };
 
   const handlePillPress = () => {
-    Speech.speak("Its a Karaoke time! Wich song do you want me to play for you? ");
+    Speech.speak("It's Karaoke time! Which song do you want me to play for you?", {
+      voice: 'com.apple.speech.synthesis.voice.Samantha' // Female voice (for English)
+    });
   };
 
   const handleMusicPress = async () => {
@@ -104,11 +107,15 @@ export default function Camera() {
   };
 
   const handleMotivationPress = () => {
-    Speech.speak("The new lipstick looks good on you! Do you want me to guide you on how to apply the rest of your makeup?");
+    Speech.speak("The new lipstick looks good on you! Do you want me to guide you on how to apply the rest of your makeup?", {
+      voice: 'com.apple.speech.synthesis.voice.Samantha' // Female voice (for English)
+    });
   };
 
   const handleCarPress = () => {
-    Speech.speak("The weather will be sunny today!");
+    Speech.speak("The weather will be sunny today!", {
+      voice: 'com.apple.speech.synthesis.voice.Samantha' // Female voice (for English)
+    });
   };
 
   if (photo) return <PhotoPreviewSection photo={photo} handleRetakePhoto={handleRetakePhoto} />;
@@ -210,8 +217,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',  // Absolute positioning
-    bottom: 20,  // 20px from the bottom
-    right: 20,  // 20px from the right
+    bottom: 10,  // 20px from the bottom
+    right: 10,  // 20px from the right
     flexDirection: 'column',  // Stack the buttons vertically
     alignItems: 'center',  // Center the buttons horizontally
     zIndex: 1,  // Ensure the buttons are above other elements
@@ -221,7 +228,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF58DB',
     borderRadius: 10,
     padding: 10,
-    width: 50,  // Set a smaller width for the button
+    width: 45,  // Set a smaller width for the button
     height: 30,  // Set a smaller height for the button
   },
   text: {

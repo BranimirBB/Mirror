@@ -46,10 +46,14 @@ export default function IndexScreen() {
             <Text style={styles.buttonText}>Wife</Text>
           </TouchableOpacity>
 
-          {/* Other buttons */}
-          <TouchableOpacity style={[styles.userButton, styles.kidButton]}>
+          {/* Kid Button */}
+          <TouchableOpacity 
+            style={[styles.userButton, styles.kidButton]}
+          >
             <Text style={styles.buttonText}>Kid</Text>
           </TouchableOpacity>
+
+          {/* New User Button */}
           <TouchableOpacity style={[styles.userButton, styles.newuserButton]}>
             <Text style={styles.buttonText}>New User</Text>
           </TouchableOpacity>
@@ -77,18 +81,19 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   imgGridUsers: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    flexDirection: 'row',  // Arrange the buttons horizontally
+    flexWrap: 'wrap',  // Allow wrapping to the next line
+    justifyContent: 'center',  // Center the buttons
     marginTop: 10,
+    width: '90%', // Limit the width of the grid for better alignment
   },
   userButton: {
-    width: 90,
-    height: 30,
+    width: '43%',  // Ensure buttons are 40% of the container width
+    height: 40, // Increased button height for better touch area
     backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 10,
+    margin: 10,  // Space between buttons
     borderRadius: 5,
     borderWidth: 3,
   },
