@@ -21,12 +21,23 @@ export default function Camera() {
   useEffect(() => {
     const updateDateTime = () => {
       const date = new Date();
-      const dateOptions = { month: 'short', day: 'numeric', timeZone: 'Europe/Berlin' };
-      const timeOptions = { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin', hour12: false };
+      const dateOptions: Intl.DateTimeFormatOptions = { 
+        month: 'short', 
+        day: 'numeric', 
+        timeZone: 'Europe/Berlin' 
+      };
+      const timeOptions: Intl.DateTimeFormatOptions = { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        timeZone: 'Europe/Berlin', 
+        hour12: false 
+      };
+  
+      // Now the TypeScript will not complain
       setCurrentDate(date.toLocaleDateString('en-US', dateOptions));
-      setCurrentTime(date.toLocaleTimeString('en-US').slice(0, 5));
+      setCurrentTime(date.toLocaleTimeString('en-US', timeOptions).slice(0, 5));
     };
-
+  
     updateDateTime(); // Initial call to set the date and time immediately
     const interval = setInterval(updateDateTime, 60000); // Update every minute
     return () => clearInterval(interval); // Cleanup on unmount
@@ -66,11 +77,11 @@ export default function Camera() {
   const handleRetakePhoto = () => setPhoto(null);
 
   const handleImagePress = () => {
-    Speech.speak("Let's go!");
+    Speech.speak("Today you will train legs!");
   };
 
   const handlePillPress = () => {
-    Speech.speak("Take your pills!");
+    Speech.speak("Its a Karaoke time! Wich song do you want me to play for you? ");
   };
 
   const handleMusicPress = async () => {
@@ -83,7 +94,7 @@ export default function Camera() {
           await sound.current.unloadAsync();
         }
         
-        await sound.current.loadAsync(require('@/assets/audio/mysong.mp3'));
+        await sound.current.loadAsync(require('@/assets/audio/the_wife_song.mp3'));
         await sound.current.playAsync();
         setIsPlaying(true);
       }
@@ -93,11 +104,11 @@ export default function Camera() {
   };
 
   const handleMotivationPress = () => {
-    Speech.speak("Good morning!");
+    Speech.speak("The new lipstick looks good on you! Do you want me to guide you on how to apply the rest of your makeup?");
   };
 
   const handleCarPress = () => {
-    Speech.speak("There is a construction on the road you usually take.");
+    Speech.speak("The weather will be sunny today!");
   };
 
   if (photo) return <PhotoPreviewSection photo={photo} handleRetakePhoto={handleRetakePhoto} />;
@@ -109,35 +120,35 @@ export default function Camera() {
         <View style={styles.imageContainer}>
           <TouchableOpacity onPress={handleCarPress}>
             <Image
-              source={require('@/assets/images/on_mirror_car.png')}  // Path to the car image
+              source={require('@/assets/images/wife_weather_camera.png')}  // Path to the car image
               style={styles.image}
             />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={handleMotivationPress}>
             <Image
-              source={require('@/assets/images/on_mirror_motivation.png')}  // Path to the morning image
+              source={require('@/assets/images/makeup_on_camera.png')}  // Path to the morning image
               style={styles.image}
             />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={handlePillPress}>
             <Image
-              source={require('@/assets/images/on_mirror_pill.png')}  // Path to the pill image
+              source={require('@/assets/images/karaoke_on_camera.png')}  // Path to the pill image
               style={styles.image}
             />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={handleImagePress}>
             <Image
-              source={require('@/assets/images/on_mirror_fitness.png')}  // Path to the fitness image
+              source={require('@/assets/images/wife_on_mirror_fitness.png')}  // Path to the fitness image
               style={styles.image}
             />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={handleMusicPress}>
             <Image
-              source={require('@/assets/images/on_mirror_music.png')}  // Path to the music image
+              source={require('@/assets/images/wife_mysong.png')}  // Path to the music image
               style={styles.image}
             />
           </TouchableOpacity>
@@ -152,16 +163,14 @@ export default function Camera() {
         {/* Button container positioned at bottom-right */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-            <AntDesign name="retweet" size={44} color="black" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleTakePhoto}>
-            <AntDesign name="camera" size={44} color="black" />
           </TouchableOpacity>
         </View>
 
         {/* Add the new image below the buttons */}
         <Image
-          source={require('@/assets/images/time-day.png')}  // Path to the new image
+          source={require('@/assets/images/wife-time-day.png')}  // Path to the new image
           style={styles.bottomImage}  // Apply styles to position the image below the buttons
         />
       </CameraView>
@@ -191,7 +200,7 @@ const styles = StyleSheet.create({
   },
   weatherText: {
     fontSize: 18,  // Adjust font size as needed
-    color: '#42FFC9',  // Change color to fit your design
+    color: '#FF58DB',  // Change color to fit your design
     marginBottom: 2,  // Space between lines
   },
   weatherText2: {
@@ -209,7 +218,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginVertical: 10,  // Adds space between buttons
-    backgroundColor: '#42FFC9',
+    backgroundColor: '#FF58DB',
     borderRadius: 10,
     padding: 10,
     width: 50,  // Set a smaller width for the button
@@ -227,7 +236,7 @@ const styles = StyleSheet.create({
   },
   bottomImage: {
     left: '25%',  // Horizontally center the image
-    marginTop: 601,
+    marginTop: 600,
     zIndex: 1,  // Ensure it's above the camera view
   },
 });

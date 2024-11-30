@@ -1,57 +1,58 @@
-import { StyleSheet, View, TextInput, Image, ImageBackground, TouchableOpacity, Text } from 'react-native';
-import { AntDesign } from '@expo/vector-icons'; // Import AntDesign for the left arrow icon
+import React from 'react';
+import { StyleSheet, ImageBackground, View, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
-export default function HomeScreen() {
+export default function IndexScreen() {
   const navigation = useNavigation(); // Get the navigation object
+
+  const handleHusbandButtonClick = () => {
+    // Navigate to the husband folder (this triggers the tab navigation)
+    navigation.reset({
+      index: 0,
+      routes: [{ name: '(tabs)/husband' as never }], // Type-casting to 'never'
+    });
+  };
+  
+  const handleWifeButtonClick = () => {
+    // Navigate to the wife folder (this triggers the tab navigation)
+    navigation.reset({
+      index: 0,
+      routes: [{ name: '(tabs)/wife' as never }], // Type-casting to 'never'
+    });
+  };
 
   return (
     <ImageBackground
-      source={require('@/assets/images/page1bg.png')}  // Path to your background image
+      source={require('@/assets/images/page1bg.png')}
       style={styles.backgroundImage}
     >
-      <TouchableOpacity 
-        style={styles.goBackButton} 
-        onPress={() => navigation.navigate('startpage')} // Navigate to StartPage
-      >
-        <AntDesign name="arrowleft" size={24} color="#0E1230" /> {/* Left arrow icon with updated color */}
-      </TouchableOpacity>
-
       <View style={styles.container}>
-        {/* Grouping Image 1 (email.png) and Text Input 1 */}
-        <View style={styles.inputGroup}>
-          <Image
-            source={require('@/assets/images/Email_.png')}  // Path to email.png image
-            style={styles.image}
-          />
-          <TextInput
-            style={styles.textInput}
-            placeholder="husband_email@gmail.com"
-          />
-        </View>
-        
-        {/* Grouping Image 2 (name.png) and Text Input 2 */}
-        <View style={styles.inputGroup}>
-          <Image
-            source={require('@/assets/images/Name_.png')}  // Path to name.png image
-            style={styles.image}
-          />
-          <TextInput
-            style={styles.textInput}
-            placeholder="Mr. Husband"
-          />
-        </View>
+        <Text style={styles.selectUserText}>Select User</Text>
 
-        {/* Grouping Image 3 (language.png) and Text Input for language */}
-        <View style={styles.inputGroup}>
-          <Image
-            source={require('@/assets/images/Language_.png')}  // Path to language.png image
-            style={styles.image}
-          />
-          <TextInput
-            style={styles.textInput}
-            placeholder="English"
-          />
+        <View style={styles.imgGridUsers}>
+          {/* Husband Button */}
+          <TouchableOpacity
+            style={[styles.userButton, styles.husbandButton]}
+            onPress={handleHusbandButtonClick} // Trigger navigation to the husband folder
+          >
+            <Text style={styles.buttonText}>Husband</Text>
+          </TouchableOpacity>
+
+          {/* Wife Button */}
+          <TouchableOpacity
+            style={[styles.userButton, styles.wifeButton]}
+            onPress={handleWifeButtonClick} // Trigger navigation to the wife folder
+          >
+            <Text style={styles.buttonText}>Wife</Text>
+          </TouchableOpacity>
+
+          {/* Other buttons */}
+          <TouchableOpacity style={[styles.userButton, styles.kidButton]}>
+            <Text style={styles.buttonText}>Kid</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.userButton, styles.newuserButton]}>
+            <Text style={styles.buttonText}>New User</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
@@ -60,45 +61,55 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   backgroundImage: {
-    flex: 1,  // Makes sure the background image covers the full screen
-    justifyContent: 'flex-start',  // Align content to the top of the screen
-    alignItems: 'flex-start',  // Align content to the left side of the screen
-    paddingTop: 220,  // Adds 200px margin from the top
-    paddingLeft: 40,  // Adds 40px margin from the left
-  },
-  goBackButton: {
-    position: 'absolute',  // Position it absolutely
-    top: 60,  // Adjust the top position as needed
-    left: 20,  // Adjust the left position as needed
-    width: 35,  // Set the width of the button
-    height: 35,  // Set the height of the button
-    borderRadius: 20,  // Make it circular
-    backgroundColor: '#42FFC9',  // Set the background color
-    justifyContent: 'center',  // Center the icon vertically
-    alignItems: 'center',  // Center the icon horizontally
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   container: {
-    flex: 1,  // Fill the screen
-    justifyContent: 'flex-start',  // Align items vertically at the top
-    marginTop: 220,
-    marginLeft: 5,
-    alignItems: 'flex-start',  // Align items horizontally to the left
-    width: '100%',  // Ensures the content takes the full width
+    flex: 1,
+    alignItems: 'center',
   },
-  inputGroup: {
-    marginBottom: 15,  // Adds 20px space between input groups
-    width: '100%',  // Makes sure the group takes up full width
+  selectUserText: {
+    marginTop: 500,
+    marginRight: '45%',
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
   },
-  image: {
-    marginBottom: 12,  // Adds space between the image and the text input
-    marginTop: 12,
+  imgGridUsers: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: 10,
   },
-  textInput: {
-    width: 300,  // Set a fixed width for the text input
-    height: 40,  // Set the height of the text input field
-    borderColor: '#ccc',  // Border color for the text input
-    borderWidth: 1,  // Border width for the text input
-    borderRadius: 5,  // Rounded corners for the text input
-    paddingLeft: 10,  // Padding inside the text input
+  userButton: {
+    width: 90,
+    height: 30,
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    borderRadius: 5,
+    borderWidth: 3,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 14,
+  },
+  husbandButton: {
+    backgroundColor: '#32B09B',
+    borderColor: '#42FFC9',
+  },
+  wifeButton: {
+    backgroundColor: '#7F73A5',
+    borderColor: '#FF58DB',
+  },
+  kidButton: {
+    backgroundColor: '#36A4A8',
+    borderColor: '#5AF1FF',
+  },
+  newuserButton: {
+    backgroundColor: 'transparent',
+    borderColor: 'white',
   },
 });

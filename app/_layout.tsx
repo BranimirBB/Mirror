@@ -2,12 +2,10 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import 'react-native-reanimated';
-
 import { useColorScheme } from '@/hooks/useColorScheme';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -15,6 +13,8 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+  const [isHusbandSelected, setIsHusbandSelected] = useState(false); // Track husband selection
+  const [isWifeSelected, setIsWifeSelected] = useState(false); // Track wife selection
 
   useEffect(() => {
     if (loaded) {
@@ -28,9 +28,37 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+      <Stack
+        screenOptions={{
+          headerShown: false, // Hide navbar for all screens in the stack
+        }}
+      >
+        {/* Index Screen */}
+        <Stack.Screen
+          name="index"
+          options={{ headerShown: false }} // Explicitly hide navbar on index.tsx
+        />
+
+        {/* Navigate to the husband tabs only after selecting husband */}
+        {isHusbandSelected && (
+          <Stack.Screen
+            name="(tabs)/husband" // Navigate to the husband tab folder
+            options={{ headerShown: false }} // Hide navbar for all husband screens
+          />
+        )}
+
+        {/* Navigate to the wife tabs only after selecting wife */}
+        {isWifeSelected && (
+          <Stack.Screen
+            name="(tabs)/wife" // Navigate to the wife tab folder
+            options={{ headerShown: false }} // Hide navbar for all wife screens
+          />
+        )}
+
+        {/* Set headerShown: false for other screens */}
+        <Stack.Screen name="startpage" options={{ headerShown: false }} />
+        <Stack.Screen name="camera" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );
