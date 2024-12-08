@@ -7,8 +7,8 @@ export default function HomeScreen() {
   const navigation = useNavigation(); // Get the navigation object
   const [selectedLanguage, setSelectedLanguage] = useState('English'); // Default language is English
   const [isModalVisible, setIsModalVisible] = useState(false); // Modal visibility state
-  const [email, setEmail] = useState('husband_email@gmail.com'); // Default email
-  const [name, setName] = useState('Mr. Husband'); // Default name
+  const [email, setEmail] = useState('kid_email@gmail.com'); // Default email
+  const [name, setName] = useState('The name'); // Default name
 
   const languages = ['English', 'Bulgarian', 'Dutch']; // Language options
 
