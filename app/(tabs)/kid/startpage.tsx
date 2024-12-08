@@ -20,7 +20,7 @@ export default function HomeScreen() {
 
   return (
     <ImageBackground
-      source={require('@/assets/images/Bghusb.png')}  // Path to your background image
+      source={require('@/assets/images/kidBG.png')}  // Path to your background image
       style={styles.backgroundImage}
     >
       <TouchableOpacity 
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     width: 35,  // Set the width of the button
     height: 35,  // Set the height of the button
     borderRadius: 20,  // Make it circular
-    backgroundColor: '#42FFC9',  // Set the background color
+    backgroundColor: '#5AF1FF',  // Set the background color
     justifyContent: 'center',  // Center the icon vertically
     alignItems: 'center',  // Center the icon horizontally
   },
@@ -131,22 +131,22 @@ const styles = StyleSheet.create({
   textInputContainer: {
     borderWidth: 0.5,
     borderRadius: 5,
-    borderColor: '#FFFFFF8D',
+    borderColor: '#DCFCFFFF',
     padding: 10,
     width: '40%',
   },
   textInput: {
     fontSize: 18,
-    color: '#FFFFFFEF',
+    color: '#DCFCFFFF',
     borderWidth: 0.5,
-    borderColor: '#FFFFFF8D',
+    borderColor: '#DCFCFFFF',
     padding: 10,
     borderRadius: 5,
     width: '80%',
   },
   dropDowntextInput: {
     fontSize: 18,
-    color: '#FFFFFFEF',
+    color: '#DCFCFFFF',
   },
   modalBackground: {
     flex: 1,

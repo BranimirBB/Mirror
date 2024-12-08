@@ -15,6 +15,8 @@ export default function RootLayout() {
   });
   const [isHusbandSelected, setIsHusbandSelected] = useState(false); // Track husband selection
   const [isWifeSelected, setIsWifeSelected] = useState(false); // Track wife selection
+  const [isKidSelected, setIsKidSelected] = useState(false); // Track wife selection
+
 
   useEffect(() => {
     if (loaded) {
@@ -52,6 +54,14 @@ export default function RootLayout() {
           <Stack.Screen
             name="(tabs)/wife" // Navigate to the wife tab folder
             options={{ headerShown: false }} // Hide navbar for all wife screens
+          />
+        )}
+
+        {/* Navigate to the husband tabs only after selecting kid */}
+        {isKidSelected && (
+          <Stack.Screen
+            name="(tabs)/kid" // Navigate to the husband tab folder
+            options={{ headerShown: false }} // Hide navbar for all husband screens
           />
         )}
 

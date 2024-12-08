@@ -12,6 +12,14 @@ export default function IndexScreen() {
       routes: [{ name: '(tabs)/husband' as never }], // Type-casting to 'never'
     });
   };
+
+  const handleKidButtonClick = () => {
+    // Navigate to the kid folder (this triggers the tab navigation)
+    navigation.reset({
+      index: 0,
+      routes: [{ name: '(tabs)/kid' as never }], // Change this line to navigate to kid
+    });
+  };
   
   const handleWifeButtonClick = () => {
     // Navigate to the wife folder (this triggers the tab navigation)
@@ -47,8 +55,9 @@ export default function IndexScreen() {
           </TouchableOpacity>
 
           {/* Kid Button */}
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.userButton, styles.kidButton]}
+            onPress={handleKidButtonClick} // Trigger navigation to the kid folder
           >
             <Text style={styles.buttonText}>Kid</Text>
           </TouchableOpacity>
